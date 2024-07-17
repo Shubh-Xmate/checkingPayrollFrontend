@@ -1,0 +1,59 @@
+<div class="container p-3 m-3">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" class="form-control mb-3" id="employeeId" [(ngModel)]="employeeId" name="employeeId"
+        aria-describedby="getProfile" placeholder="Enter the employeeId for which profile details you want" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div *ngIf="showDetails" class="mt-3">
+    <div class="card mb-4">
+      <div class="card-header">Profile of employee {{employee.firstName}} {{employee.lastName}}</div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <label class="small mb-1" for="employeeId">Employee ID</label>
+            <input class="form-control" id="employeeId" type="text" value="{{employee.employeeId}}">
+          </div>
+          
+          <div class="mb-3">
+            <label class="small mb-1" for="name">Name</label>
+            <input class="form-control" id="name" type="text" value="{{employee.firstName}} {{employee.lastName}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="mobileNumber">Mobile Number</label>
+            <input class="form-control" id="mobileNumber" type="text" value="{{employee.mobileNumber}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="dateOfBirth">Date of birth</label>
+            <input class="form-control" id="dateOfBirth" type="text" value="{{employee.dob}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="managerId">Manager ID</label>
+            <input class="form-control" id="managerId" type="text" value="{{employee.managerId}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="roleId">Role ID</label>
+            <input class="form-control" id="roleId" type="text" value="{{employee.roleId}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="dateOfJoining">Date of joining</label>
+            <input class="form-control" id="dateOfJoining" type="text" value="{{employee.dateOfJoining}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="small mb-1" for="salaryId">Salary ID</label>
+            <input class="form-control" id="salaryId" type="text" value="{{employee.salaryId}}">
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

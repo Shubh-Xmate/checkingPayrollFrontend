@@ -1,0 +1,55 @@
+<div class="container mt-3 mb-3">
+    <h2>Create Employee</h2>
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="employee.firstName" name="firstName"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="employee.lastName" name="lastName"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="mobileNumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobileNumber" [(ngModel)]="employee.mobileNumber"
+                name="mobileNumber" required>
+        </div>
+        <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" [(ngModel)]="employee.dob" name="dob" required>
+        </div>
+        <div class="mb-3">
+            <label for="managerId" class="form-label">Manager ID</label>
+            <input type="text" class="form-control" id="managerId" [(ngModel)]="employee.managerId" name="managerId"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="roleId" class="form-label">Role ID</label>
+            <input type="text" class="form-control" id="roleId" [(ngModel)]="employee.roleId" name="roleId" required>
+        </div>
+        <div class="mb-3">
+            <label for="dateOfJoining" class="form-label">Date of Joining</label>
+            <input type="date" class="form-control" id="dateOfJoining" [(ngModel)]="employee.dateOfJoining"
+                name="dateOfJoining" required>
+        </div>
+        <div class="mb-3">
+            <label for="salaryId" class="form-label">Salary ID</label>
+            <input type="text" class="form-control" id="salaryId" [(ngModel)]="employee.salaryId" name="salaryId"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div *ngIf="showDetails">
+        <div *ngIf="sentSuccessfully" class="alert mt-3 alert-success">
+            <strong>Success!</strong> Request sent successfully.
+        </div>
+
+        <div *ngIf="!sentSuccessfully" class="alert mt-3 alert-danger">
+            <strong>Error!</strong> Request sending failed.
+        </div>
+    </div>
+
+</div>
