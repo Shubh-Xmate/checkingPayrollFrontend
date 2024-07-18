@@ -11,6 +11,7 @@ import { GeneratePayrollComponent } from './components/dashboard/main-content/ge
 import { CreateEmployeeComponent } from './components/dashboard/main-content/create-employee/create-employee.component';
 import { RequestedLeavesComponent } from './components/dashboard/main-content/requested-leaves/requested-leaves.component';
 import { UpdateEmployeeComponent } from './components/dashboard/main-content/update-employee/update-employee.component';
+import { DeleteEmployeeComponent } from './components/dashboard/main-content/delete-employee/delete-employee.component';
 
 const routes: Routes = [
   { 
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'generate-payroll', component: GeneratePayrollComponent },
       { path: 'create-employee', component:  CreateEmployeeComponent},
       { path: 'update-employee', component: UpdateEmployeeComponent },
+      { path: 'delete-employee', component: DeleteEmployeeComponent },
       { path: 'requested-leaves', component: RequestedLeavesComponent }
     ]
 }
