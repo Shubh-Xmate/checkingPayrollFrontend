@@ -52,10 +52,14 @@ export class AppComponent implements OnInit {
   get token() {
     return localStorage.getItem('access_token'); // Retrieve the token from localStorage
   }
+  
 
   private storeToken(token: string) {
     if(token) {
       localStorage.setItem('access_token', token); // Store the token in localStorage
+      const jwtPayload = JSON.parse(atob(token.split('.')[1]));
+      const  mobileNumber = jwtPayload.preferred_username;
+      localStorage.setItem('mobileNumber', mobileNumber);
       this.showDetails = true;
     }
   }

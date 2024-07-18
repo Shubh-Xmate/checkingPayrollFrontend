@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { IEmployee } from '../components/dashboard/main-content/create-employee/employee.model';
+import { SidebarComponent } from '../components/dashboard/sidebar/sidebar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,7 @@ import { IEmployee } from '../components/dashboard/main-content/create-employee/
 export class CreateEmployeeService {
   private createApiUrl = 'http://localhost:8090/api/create';
   // private createApiUrl = 'http://localhost:8072/payroll/employee/api/create';
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient, private daf: SidebarComponent) { }
   createEmployee(employee: IEmployee): Observable<IEmployee> {
     const access_token = localStorage.getItem('access_token');
     if (!access_token) {
@@ -21,15 +20,7 @@ export class CreateEmployeeService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${access_token}`,
       'Content-Type': 'application/json'
-      // 'Access-Control-Allow-Headers': '*',
-      // 'Access-Control-Allow-Methods': '*',
-      // 'Access-Control-Allow-Origin': '*'
     });
-    const jwtPayload = JSON.parse(atob(access_token.split('.')[1]));
-    const roles = jwtPayload.realm_access.roles;
-
-    console.log(roles);
-
 
     return this.http.post<IEmployee>(this.createApiUrl, employee, { headers })
       .pipe(
@@ -40,4 +31,5 @@ export class CreateEmployeeService {
         })
       );
   }
+
 }
