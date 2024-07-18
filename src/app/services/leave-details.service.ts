@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LeaveDetailsService {
 
-  private apiUrl = 'https://catfact.ninja/fact'; // Replace with your Java API URL
+  private apiUrl = 'http://localhost:8082/api/leaveDetails/fetch'; // Replace with your Java API URL
 
   leaveDetails: any = {
     remainingSickLeaves: Number,
@@ -21,14 +21,7 @@ export class LeaveDetailsService {
   constructor(private http: HttpClient) { }
 
   getLeaveDetails(year: string): Observable<any> {
-    this.leaveDetails.remainingSickLeaves = 0,
-    this.leaveDetails.remainingCasualLeaves = 0,
-    this.leaveDetails.remainingEarnedLeaves = 0,
-    this.leaveDetails.leaveYear = 0,
-    this.leaveDetails.paidLeaves = 0,
-    this.leaveDetails.totalPaidLeaves = 0;
-
-    return of(this.leaveDetails);
-    // return this.http.get<any>(`${this.apiUrl}?year=${year}`);
+    const employeeId = localStorage.getItem("employeeId");
+    return this.http.get<any>(`${this.apiUrl}?employeeId=${employeeId}&leaveYear=${year}`);
   }
 }

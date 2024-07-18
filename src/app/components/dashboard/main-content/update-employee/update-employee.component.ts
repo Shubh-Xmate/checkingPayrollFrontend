@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IEmployee } from './employee.model';
-import { CreateEmployeeService } from '../../../../services/create-employee.service';
+import { IEmployee } from '../create-employee/employee.model';
+import { UpdateEmployeeService } from '../../../../services/update-employee.service';
 
 @Component({
-  selector: 'app-create-employee',
+  selector: 'app-update-employee',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './create-employee.component.html',
-  styleUrl: './create-employee.component.css'
+  templateUrl: './update-employee.component.html',
+  styleUrl: './update-employee.component.css'
 })
-export class CreateEmployeeComponent implements OnInit {
+export class UpdateEmployeeComponent implements OnInit{
+  mobileNumber: Number | null = null; 
   employee: IEmployee = {
     firstName: '',
     lastName: '',
@@ -21,12 +22,13 @@ export class CreateEmployeeComponent implements OnInit {
     roleId: '',
     dateOfJoining: new Date(),
     salaryId: null,
-    employeeId: null
+    employeeId: 1  // localStorage.employeeId
   };
+
   sentSuccessfully: boolean = false;
   showDetails: boolean = false;
 
-  constructor(private createEmployeeService : CreateEmployeeService) { }
+  constructor(private updateEmployeeService : UpdateEmployeeService) { }
 
   ngOnInit(): void {
   }
@@ -35,14 +37,14 @@ export class CreateEmployeeComponent implements OnInit {
     if (form.valid) {
       // this.employee = form.value;
       // console.log('Employee Data:', this.employee);
-        this.createEmployeeService.createEmployee(this.employee).subscribe({
+        this.updateEmployeeService.updateEmployee(this.employee,this.mobileNumber).subscribe({
           next: (response) => {
-            console.log('Employee created successfully:', response);
+            console.log('Employee updated successfully:', response);
             this.sentSuccessfully = true;
             this.showDetails = true;
           },
           error: (error) => {
-            console.error('Error creating employee:', error);
+            console.error('Error updating employee:', error);
             this.sentSuccessfully = false;
             this.showDetails = true;
           }

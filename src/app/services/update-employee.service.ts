@@ -6,13 +6,12 @@ import { IEmployee } from '../components/dashboard/main-content/create-employee/
 @Injectable({
   providedIn: 'root'
 })
-
-export class CreateEmployeeService {
-  private createApiUrl = 'http://localhost:8090/api/create';
+export class UpdateEmployeeService {
+  private updateApiUrl = 'http://localhost:8090/api/update';
 
   constructor(private http: HttpClient) { }
 
-  createEmployee(employee: IEmployee): Observable<IEmployee> {
-    return this.http.post<IEmployee>(this.createApiUrl, employee);
+  updateEmployee(employee: IEmployee, mobileNumber: Number|null): Observable<IEmployee> {
+    return this.http.put<IEmployee>(`${this.updateApiUrl}?mobileNumber=${mobileNumber}`, employee);
   }
 }
