@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observer } from 'rxjs';
-import { PayrollGenerationService } from '../../../../services/generate-payroll.service';
-import {FormsModule} from "@angular/forms";
+import { GeneratePayrollService } from '../../../../services/generate-payroll.service';
+import {FormsModule, NgForm} from "@angular/forms";
+import { IGeneratePayrollDetails } from './generatePayroll.model';
 
 
 @Component({
@@ -15,54 +15,39 @@ import {FormsModule} from "@angular/forms";
     CommonModule
   ]
 })
-export class GeneratePayrollComponent {
+export class GeneratePayrollComponent implements OnInit{
   mobileNumber: number | null = null;
-  payrollDetails: any = {
-    payrollMonth: 'July',
-    payrollYear: 2024,
-    deductions: 200,
-    netSalary: 5000
+  generatePayrollDetails: IGeneratePayrollDetails = {
+    employeeId:0,
+    payrollMonth: '',
+    payrollYear: 0,
+    deductions: 0,
+    netSalary: 0
   };
+  sentSuccessfully: boolean = false;
   showDetails: boolean = false;
 
-  constructor(private payrollService: PayrollGenerationService) {}
+  constructor(private generatePayrollService: GeneratePayrollService) {
+  }
 
-  onSubmit() {
+  ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
     if (this.mobileNumber) {
-      const observer: Observer<any> = {
-        next: (data) => {
-          this.payrollDetails = data;
+      this.generatePayrollService.generatePayrollByMobileNumber(this.mobileNumber).subscribe({
+        next: (response) => {
+          console.log('Payroll created successfully:', response);
+          this.sentSuccessfully=true;
           this.showDetails = true;
         },
         error: (error) => {
-          console.error('Error generating payroll', error);
-        },
-        complete: () => {}
-      };
+          console.error('Error generating payroll:', error);
+          this.sentSuccessfully=false;
+          this.showDetails=false;
+        }
+      });
 
-      this.payrollService.generatePayrollByMobileNumber(this.mobileNumber).subscribe(observer);
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-// import { Component } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-generate-payroll',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './generate-payroll.component.html',
-//   styleUrl: './generate-payroll.component.css'
-// })
-// export class GeneratePayrollComponent {
-//
-// }

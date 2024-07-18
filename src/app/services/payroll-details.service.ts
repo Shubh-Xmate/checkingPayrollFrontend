@@ -1,48 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { IPayrollDetails } from '../components/dashboard/main-content/payroll-details/payrollDetails.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PayrollDetailsService {
 
-  private apiUrl = 'http://localhost:8080/api/payroll'; // Replace with your Java API URL
+  private apiUrl = 'http://localhost:8080/api/payroll/fetch';
 
-  payrollDetails: any = {
-    netSalary: 5000,
-    deductions: 200,
+  payrollDetails: IPayrollDetails={
+    employeeId: 0,
     payrollMonth: '',
-    payrollYear: 0
+    payrollYear:0,
+    deductions:0,
+    netSalary: 0
   }
-
   constructor(private http: HttpClient) { }
 
-  getPayrollDetails(month: string, year: number): Observable<any> {
-    this.payrollDetails.payrollMonth = month;
-    this.payrollDetails.payrollYear = year;
+  getPayrollDetails(employeeId:number,payrollMonth: string,payrollYear: number): Observable<IPayrollDetails> {
+    // this.payrollDetails.payrollMonth = payrollMonth;
+    // this.payrollDetails.payrollYear = payrollYear;
 
-    return of(this.payrollDetails);
+    //return of(this.payrollDetails);
     // In the future, replace the above line with an actual API call
-    // return this.http.get<any>(`${this.apiUrl}?month=${month}&year=${year}`);
+    return this.http.get<IPayrollDetails>(`${this.apiUrl}?employeeId=${employeeId}&payrollMonth=${payrollMonth}&payrollYear=${payrollYear}`);
   }
 }
-
-
-
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-//
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class PayrollDetailsService {
-//   private apiUrl = 'http://localhost:8080/api/payroll'; // Replace with your Java API URL
-//
-//   constructor(private http: HttpClient) { }
-//
-//   getPayrollDetails(month: string, year: number): Observable<any> {
-//     return this.http.get<any>(`${this.apiUrl}?month=${month}&year=${year}`);
-//   }
-// }
