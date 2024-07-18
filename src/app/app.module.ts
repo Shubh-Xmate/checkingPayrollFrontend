@@ -17,8 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     DashboardComponent,
     SidebarComponent,
-    MainContentComponent,
-    
+    MainContentComponent    
   ],
   imports: [
     BrowserModule,

@@ -7,5 +7,5 @@ export interface IEmployee {
     roleId: string;
     dateOfJoining: Date;
     salaryId: Number | null;
-    employeeId: Number;
+    employeeId: Number | null;
 }

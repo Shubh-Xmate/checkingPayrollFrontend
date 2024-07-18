@@ -10,6 +10,7 @@ import { PayrollDetailsComponent } from './components/dashboard/main-content/pay
 import { GeneratePayrollComponent } from './components/dashboard/main-content/generate-payroll/generate-payroll.component';
 import { CreateEmployeeComponent } from './components/dashboard/main-content/create-employee/create-employee.component';
 import { RequestedLeavesComponent } from './components/dashboard/main-content/requested-leaves/requested-leaves.component';
+import { UpdateEmployeeComponent } from './components/dashboard/main-content/update-employee/update-employee.component';
 
 const routes: Routes = [
   { 
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'payroll-details', component:  PayrollDetailsComponent},
       { path: 'generate-payroll', component: GeneratePayrollComponent },
       { path: 'create-employee', component:  CreateEmployeeComponent},
+      { path: 'update-employee', component: UpdateEmployeeComponent },
       { path: 'requested-leaves', component: RequestedLeavesComponent }
     ]
 }
