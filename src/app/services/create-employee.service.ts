@@ -11,7 +11,7 @@ import { SidebarComponent } from '../components/dashboard/sidebar/sidebar.compon
 export class CreateEmployeeService {
   private createApiUrl = 'http://localhost:8090/api/create';
   // private createApiUrl = 'http://localhost:8072/payroll/employee/api/create';
-  constructor(private http: HttpClient, private daf: SidebarComponent) { }
+  constructor(private http: HttpClient) { }
   createEmployee(employee: IEmployee): Observable<IEmployee> {
     const access_token = localStorage.getItem('access_token');
     if (!access_token) {

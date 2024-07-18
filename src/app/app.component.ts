@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
     console.log("Logging out...");
     this.oauthService.logOut();
     localStorage.removeItem('access_token'); // Remove token from localStorage on logout
+    localStorage.removeItem('mobileNumber');
   }
 
   get token() {
