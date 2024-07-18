@@ -34,7 +34,6 @@ export class SidebarComponent {
       }
     }
     isAdmin(): boolean {
-      console.log("admin toh hai");
       return this.roles.includes('admin');
     }
   
