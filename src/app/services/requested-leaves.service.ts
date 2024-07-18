@@ -9,12 +9,12 @@ export class RequestedLeavesService {
 
 
   constructor(private http : HttpClient) { }
-  private apiUrl = "http://localhost:8082/api/fetchall";
+  private apiUrl = "http://localhost:8082/api/fetchallbyManagerId";
   requestedLeaves: any[] = []
    ;
   
   getRequestedLeaves(employeeId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?employeeId=${employeeId}`)
+    return this.http.get<any[]>(`${this.apiUrl}?managerId=${employeeId}`)
     .pipe(
 
       map(response => {
