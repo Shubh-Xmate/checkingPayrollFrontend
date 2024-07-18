@@ -10,19 +10,7 @@ export class RequestedLeavesService {
 
   constructor(private http : HttpClient) { }
   private apiUrl = "localhost:8082/api/fetchall";
-  requestedLeaves: any[] = 
-  [
-      {
-          "employeeId": 1,
-          "leaveType": "casual",
-          "startDate": "2024-07-18",
-          "endDate": "2024-07-19",
-          "appliedDate": "2024-07-09",
-          "status": "PENDING",
-          "comments": "",
-          "managerId": 1
-      }
-  ]
+  requestedLeaves: any[] = []
    ;
   
   getRequestedLeaves(employeeId: number): Observable<any[]> {

@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
     this.fetchEmployeeDetailsService.getEmployeeDetails().subscribe(
       (response) => {
         this.employeeDetails = response;
+        localStorage.setItem("managerId", this.employeeDetails.managerId);
         localStorage.setItem("employeeId", this.employeeDetails.employeeId);
       },
       (error) => {
