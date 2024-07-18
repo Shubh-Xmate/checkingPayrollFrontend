@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
         localStorage.setItem("employeeId", this.employeeDetails.employeeId);
       },
       (error) => {
-        console.error('Error fetching employee details:', error);
+        alert(`Error fetching employee details: ${error}`);
       }
     );
   }

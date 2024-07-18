@@ -30,7 +30,8 @@ export class PayrollDetailsComponent {
 
   onSubmit() {
 
-    if (this.employeeId && this.payrollMonth && this.payrollYear) {
+    if (this.payrollMonth && this.payrollYear) {
+      this.employeeId = Number(localStorage.getItem("employeeId"));
       const observer: Observer<any> = {
         next: (data) => {
           this.payrollDetails = data;

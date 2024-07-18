@@ -17,9 +17,9 @@
                       <p class="card-text">endDate: {{ item.endDate }}</p>
                       <p class="card-text">Comments: {{ item.comments }}</p>
                   </div>
-                  <div *ngIf="item.status == 'Pending'" class="btn-container">
+                  <div *ngIf="item.status == 'PENDING'" class="btn-container">
                       <button type="button" (click)="updateLeaveStatus(item.leaveId, 'APPROVED', item)" class="btn btn-outline-success m-1" style="width: auto;">Approve</button>
-                      <button type="button" (click)="updateLeaveStatus(item.leaveId, 'Rejected', item)" class="btn btn-outline-danger m-1" style="width: auto;">Reject</button>
+                      <button type="button" (click)="updateLeaveStatus(item.leaveId, 'REJECTED', item)" class="btn btn-outline-danger m-1" style="width: auto;">Reject</button>
                   </div>
               </div>
           </div>

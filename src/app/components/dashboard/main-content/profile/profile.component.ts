@@ -23,8 +23,8 @@ export class ProfileComponent {
     managerId: null,
     roleId: '',
     dateOfJoining: new Date(),
-    salaryId: null,
-    employeeId: null
+    salaryId: 0,
+    employeeId: 0
   };
   
   showDetails: boolean = false;
@@ -32,7 +32,8 @@ export class ProfileComponent {
   constructor(private profileService : ProfileService) {}
 
   onSubmit() {
-    if (this.employeeId) {
+    if (localStorage.getItem("employeeId")) {
+      this.employeeId = Number(localStorage.getItem("employeeId"));
       const observer: Observer<IEmployee> = {
         next: (data) => {
           this.employee = data;

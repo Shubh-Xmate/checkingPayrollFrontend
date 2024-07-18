@@ -34,7 +34,8 @@ export class GeneratePayrollComponent implements OnInit{
   }
 
   onSubmit(form: NgForm) {
-    if (this.mobileNumber) {
+    if (Number(localStorage.getItem("mobileNumber"))) {
+      this.mobileNumber = Number(localStorage.getItem("mobileNumber"));
       this.generatePayrollService.generatePayrollByMobileNumber(this.mobileNumber).subscribe({
         next: (response) => {
           console.log('Payroll created successfully:', response);

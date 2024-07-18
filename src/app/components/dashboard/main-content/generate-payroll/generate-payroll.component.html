@@ -1,16 +1,6 @@
 <div class="container p-3 m-3">
   <form #generatePayrollForm="ngForm" (ngSubmit)="onSubmit(generatePayrollForm)">
-    <div class="form-group">
-      <input
-        type="number"
-        class="form-control mb-3"
-        id="mobileNumber"
-        [(ngModel)]="mobileNumber"
-        name="mobileNumber"
-        placeholder="Enter Mobile Number"
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Generate</button>
   </form>
   <div *ngIf="showDetails">
     <div *ngIf="sentSuccessfully" class="alert mt-3 alert-success">

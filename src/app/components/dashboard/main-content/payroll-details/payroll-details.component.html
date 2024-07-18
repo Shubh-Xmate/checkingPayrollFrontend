@@ -4,18 +4,10 @@
       <input
         type="text"
         class="form-control mb-3"
-        id="employeeId"
-        [(ngModel)]="employeeId"
-        name="employeeId"
-        placeholder="Enter EmployeeId"
-      />
-      <input
-        type="text"
-        class="form-control mb-3"
         id="payrollMonth"
         [(ngModel)]="payrollMonth"
         name="payrollMonth"
-        placeholder="Enter Month (e.g., JULY)"
+        placeholder="Enter Month (e.g., July)"
       />
     </div>
     <div class="form-group">
@@ -28,7 +20,7 @@
         placeholder="Enter Year (YYYY)"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Fetch Payroll Details</button>
   </form>
 
   <div *ngIf="showDetails" class="mt-3">

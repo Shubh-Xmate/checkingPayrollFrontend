@@ -1,13 +1,9 @@
 <div class="container p-3 m-3">
   <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <input type="text" class="form-control mb-3" id="employeeId" [(ngModel)]="employeeId" name="employeeId"
-        aria-describedby="getProfile" placeholder="Enter the employeeId for which profile details you want" />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary mt-3">Show my details</button>
   </form>
 
-  <div *ngIf="showDetails" class="mt-3">
+  <div *ngIf="showDetails" class="">
     <div class="card mb-4">
       <div class="card-header">Profile of employee {{employee.firstName}} {{employee.lastName}}</div>
       <div class="card-body">

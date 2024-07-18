@@ -36,7 +36,7 @@ export class LeaveRequestComponent {
   onSubmit() {
     const employeeId = Number(localStorage.getItem("employeeId"));
     this.leaveDetails.employeeId = employeeId;
-    this.leaveDetails.status = "Pending";
+    this.leaveDetails.status = "PENDING";
     this.leaveDetails.managerId = Number(localStorage.getItem("managerId"));
     this.leaveDetails.appliedDate = new Date().toISOString().split('T')[0];
 
