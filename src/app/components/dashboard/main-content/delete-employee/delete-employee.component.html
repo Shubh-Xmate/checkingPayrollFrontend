@@ -1,0 +1,21 @@
+<div class="container mt-3 mb-3">
+    <h2>Delete Employee</h2>
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+        <div class="mb-3">
+            <label for="mobileNumber" class="form-label">Mobile number</label>
+            <input type="text" class="form-control" id="mobileNumber" [(ngModel)]="mobileNumber" name="mobileNumber"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div *ngIf="showDetails">
+        <div *ngIf="sentSuccessfully" class="alert mt-3 alert-success">
+            <strong>Success!</strong> Request sent successfully.
+        </div>
+
+        <div *ngIf="!sentSuccessfully" class="alert mt-3 alert-danger">
+            <strong>Error!</strong> Request sending failed.
+        </div>
+    </div>
+</div>
