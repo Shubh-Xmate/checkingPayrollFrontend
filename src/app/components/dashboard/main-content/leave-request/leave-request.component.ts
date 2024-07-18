@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { LeaveDto } from './leave-request.model';
+import { LeaveRequestService } from '../../../../services/leave-request.service';
 
 @Component({
   selector: 'app-leave-request',
@@ -17,7 +18,7 @@ export class LeaveRequestComponent {
     leaveType: '',
     startDate: new Date(),
     endDate: new Date(),
-    appliedDate: new Date(),
+    appliedDate: '',
     status: '',
     comments: '',
     managerId: 0
@@ -26,17 +27,20 @@ export class LeaveRequestComponent {
   sentSuccessfully: boolean = false;
   showDetails: boolean = false;
 
-  constructor() {}
+  constructor(private leaveRequestService: LeaveRequestService) {}
+  ngOnInit(): void{
 
-  onSubmit() {
-    this.leaveDetails.employeeId = 1;
-    this.leaveDetails.status = "pending";
-    this.leaveDetails.managerId = 2;
-    this.leaveDetails.appliedDate = new Date();
-    console.log(this.leaveDetails);
+  }
+
+  onSubmit(form: NgForm) {
+    const employeeId = Number(localStorage.getItem("employeeId"));
+    this.leaveDetails.employeeId = employeeId;
+    this.leaveDetails.status = "Pending";
+    this.leaveDetails.managerId = Number(localStorage.getItem("managerId"));
+    this.leaveDetails.appliedDate = new Date().toISOString().split('T')[0];
+
     this.showDetails = true;
-    if(this.leaveDetails.leaveType == 'abc') this.sentSuccessfully = true;
-    else this.sentSuccessfully = false;
-    // You can add your service call here to submit the form data
+    this.leaveRequestService.createLeave(this.leaveDetails);
+    console.log(this.leaveDetails);
   }
 };

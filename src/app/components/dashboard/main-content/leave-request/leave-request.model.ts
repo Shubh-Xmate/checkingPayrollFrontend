@@ -3,7 +3,7 @@ export interface LeaveDto {
     leaveType: string;
     startDate: Date;
     endDate: Date;
-    appliedDate: Date;
+    appliedDate: string;
     status: string;
     comments: string;
     managerId: number;
