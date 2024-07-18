@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RequestedLeavesService } from '../../../../services/requested-leaves.service';
 @Component({
   selector: 'app-requested-leaves',
   standalone: true,
@@ -10,12 +11,12 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class RequestedLeavesComponent {
-  tabs: string[] = ['All', 'Pending', 'Accepted', 'Declined'];
+  tabs: string[] = ['All', 'Pending', 'Approved', 'Rejected'];
   activeTab: number = 0;
   tabData: any[] = [];
   dataLoaded: boolean = false;
 
-  constructor() { }
+  constructor(private requestedLeavesService : RequestedLeavesService){}
 
   ngOnInit(): void {
     this.fetchDataForTab(this.activeTab);
@@ -28,21 +29,26 @@ export class RequestedLeavesComponent {
 
   fetchDataForTab(index: number): void {
     this.dataLoaded = true;
-    this.tabData = [
-      {
-        title: "first",
-        description: "description1"
-      },
-      {
-        title: "first2",
-        description: "description2"
-      },
-      {
-        title: "first3",
-        description: "description3"
-      }
-    ]
+    let employeeId = Number(localStorage.getItem('employeeId'));
+    this.requestedLeavesService.getRequestedLeaves(1).subscribe(data => {
+      this.tabData = data;
+    })
+    
+   
     console.log(this.tabData);
     console.log(index);
+    this.filterData(index);
+  }
+  filterData(index: number): void {
+    if (index === 0) {
+      this.tabData = this.tabData; // All
+    } else if (index === 1) {
+      this.tabData = this.tabData.filter(item => item.status === 'Pending');
+    } else if (index === 2) {
+      this.tabData = this.tabData.filter(item => item.status === 'Approved');
+    } else if (index === 3) {
+      this.tabData = this.tabData.filter(item => item.status === 'Rejected');
+    }
+    console.log(this.tabData);
   }
 }
