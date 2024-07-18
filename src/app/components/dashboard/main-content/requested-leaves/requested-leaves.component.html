@@ -11,8 +11,8 @@
           <div *ngFor="let item of tabData" class="col-md-4"> <!-- Adjust column size as needed -->
               <div class="card mt-3">
                   <div class="card-body">
-                      <h5 class="card-title">Employee Code: {{ item.employeeId }} requested for</h5>
-                      <p class="card-text">{{ item.status }} leave</p>
+                      <h5 class="card-title">Employee Code: {{ item.employeeId }} </h5>
+                      <p class="card-text btn btn-warning">leave status : {{ item.status }}</p>
                       <p class="card-text">startDate: {{ item.startDate }}</p>
                       <p class="card-text">endDate: {{ item.endDate }}</p>
                       <p class="card-text">Comments: {{ item.comments }}</p>

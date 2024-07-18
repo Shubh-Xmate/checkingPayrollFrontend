@@ -12,6 +12,7 @@ import { CreateEmployeeComponent } from './components/dashboard/main-content/cre
 import { RequestedLeavesComponent } from './components/dashboard/main-content/requested-leaves/requested-leaves.component';
 import { UpdateEmployeeComponent } from './components/dashboard/main-content/update-employee/update-employee.component';
 import { DeleteEmployeeComponent } from './components/dashboard/main-content/delete-employee/delete-employee.component';
+import { YourLeaveRequestComponent} from './components/dashboard/main-content/your-leave-requests/your-leave-requests.component'
 
 const routes: Routes = [
   { 
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'leave-request', component:  LeaveRequestComponent},
       { path: 'leave-details', component:  LeaveDetailsComponent },
+      { path: 'your-leave-details', component: YourLeaveRequestComponent},
       { path: 'payroll-details', component:  PayrollDetailsComponent},
       { path: 'generate-payroll', component: GeneratePayrollComponent },
       { path: 'create-employee', component:  CreateEmployeeComponent},
