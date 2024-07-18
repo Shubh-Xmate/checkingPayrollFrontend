@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LeaveDto } from './leave-request.model';
 import { LeaveRequestService } from '../../../../services/leave-request.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-leave-request',
@@ -32,7 +33,7 @@ export class LeaveRequestComponent {
 
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     const employeeId = Number(localStorage.getItem("employeeId"));
     this.leaveDetails.employeeId = employeeId;
     this.leaveDetails.status = "Pending";
@@ -40,7 +41,18 @@ export class LeaveRequestComponent {
     this.leaveDetails.appliedDate = new Date().toISOString().split('T')[0];
 
     this.showDetails = true;
-    this.leaveRequestService.createLeave(this.leaveDetails);
+
+    const observer: Observer<any> = {
+      next: (data) => {
+        this.sentSuccessfully = true;
+      },
+      error: (error) => {
+        console.error('Error fetching leave requests', error);
+      },
+      complete: () => {
+      }
+    };
+    this.leaveRequestService.createLeave(this.leaveDetails).subscribe(observer);
     console.log(this.leaveDetails);
   }
 };

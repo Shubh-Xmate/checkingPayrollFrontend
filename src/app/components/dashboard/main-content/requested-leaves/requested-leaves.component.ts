@@ -13,6 +13,7 @@ import { RequestedLeavesService } from '../../../../services/requested-leaves.se
 export class RequestedLeavesComponent {
   tabs: string[] = ['All', 'Pending', 'Approved', 'Rejected'];
   activeTab: number = 0;
+  mainTabData: any[] = [];
   tabData: any[] = [];
   dataLoaded: boolean = false;
 
@@ -30,12 +31,13 @@ export class RequestedLeavesComponent {
   fetchDataForTab(index: number): void {
     this.dataLoaded = true;
     let employeeId = Number(localStorage.getItem('employeeId'));
-    this.requestedLeavesService.getRequestedLeaves(1).subscribe(data => {
+    this.requestedLeavesService.getRequestedLeaves(employeeId).subscribe(data => {
+      this.mainTabData = data;
       this.tabData = data;
     })
     
    
-    console.log(this.tabData);
+    console.log(this.mainTabData);
     console.log(index);
     this.filterData(index);
   }
@@ -43,11 +45,11 @@ export class RequestedLeavesComponent {
     if (index === 0) {
       this.tabData = this.tabData; // All
     } else if (index === 1) {
-      this.tabData = this.tabData.filter(item => item.status === 'Pending');
+      this.tabData = this.mainTabData.filter(item => item.status === 'Pending');
     } else if (index === 2) {
-      this.tabData = this.tabData.filter(item => item.status === 'Approved');
+      this.tabData = this.mainTabData.filter(item => item.status === 'Approved');
     } else if (index === 3) {
-      this.tabData = this.tabData.filter(item => item.status === 'Rejected');
+      this.tabData = this.mainTabData.filter(item => item.status === 'Rejected');
     }
     console.log(this.tabData);
   }

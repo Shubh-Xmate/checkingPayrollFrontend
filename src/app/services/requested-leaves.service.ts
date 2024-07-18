@@ -9,17 +9,20 @@ export class RequestedLeavesService {
 
 
   constructor(private http : HttpClient) { }
-  private apiUrl = "localhost:8082/api/fetchall";
+  private apiUrl = "http://localhost:8082/api/fetchall";
   requestedLeaves: any[] = []
    ;
   
   getRequestedLeaves(employeeId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?employeeId=${employeeId}`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}?employeeId=${employeeId}`)
+    .pipe(
+
       map(response => {
         this.requestedLeaves = response; // Store the response data in the array
         console.log(this.requestedLeaves);
         return this.requestedLeaves;
       }),
+
       catchError(error => {
         console.error('Error fetching requested leaves:', error);
         return of([]); // Return an empty array in case of error
