@@ -17,8 +17,7 @@ export class ProfileService {
     managerId: 0,
     roleId: '',
     dateOfJoining: new Date(),
-    salaryId: 0,
-    employeeId: 0
+    salaryId: 0
   };
 
   constructor(private http: HttpClient) { }

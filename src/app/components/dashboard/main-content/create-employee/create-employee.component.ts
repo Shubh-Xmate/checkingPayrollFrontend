@@ -20,8 +20,7 @@ export class CreateEmployeeComponent implements OnInit {
     managerId: null,
     roleId: '',
     dateOfJoining: new Date(),
-    salaryId: null,
-    employeeId: 0
+    salaryId: null
   };
   sentSuccessfully: boolean = false;
   showDetails: boolean = false;
