@@ -9,7 +9,7 @@ import { authConfig } from './auth-config';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  showDetails: Boolean = false;
+  showDetails: Boolean = true;
   title: String = "payrollfrontend"
 
   constructor(private oauthService: OAuthService) { }
