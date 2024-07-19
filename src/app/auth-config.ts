@@ -9,5 +9,5 @@ export const authConfig: AuthConfig = {
   scope: 'openid profile email',
   showDebugInformation: true,
   requireHttps: false, // Use true in production
-  dummyClientSecret : "hQtgXxBHoD9C6QAm93cje2MYonIPouyy"
+  dummyClientSecret : "qrfjyupZhzvoQBlcYj9Kcz9WyJNklpcx"
 };

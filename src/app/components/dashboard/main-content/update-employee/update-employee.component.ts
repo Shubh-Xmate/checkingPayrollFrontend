@@ -22,7 +22,7 @@ export class UpdateEmployeeComponent implements OnInit{
     roleId: '',
     dateOfJoining: new Date(),
     salaryId: null,
-    employeeId: 1  // localStorage.employeeId
+    employeeId: Number(localStorage.getItem("employeeId"))
   };
 
   sentSuccessfully: boolean = false;
